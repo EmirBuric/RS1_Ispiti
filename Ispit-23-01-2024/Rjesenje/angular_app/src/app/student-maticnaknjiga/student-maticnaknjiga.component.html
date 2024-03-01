@@ -1,0 +1,134 @@
+<p>student-maticnaknjiga works!</p>
+
+<div>
+<div *ngIf="upisaneGodinePodaci">
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Student ID</label>
+    <div class="col-sm-4">
+      <input  [value]="upisaneGodinePodaci.studentId" disabled class="form-control" >
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Student ime</label>
+        <div class="col-sm-4">
+      <input class="form-control" [value]="upisaneGodinePodaci.ime" >
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Student prezime</label>
+        <div class="col-sm-4">
+      <input class="form-control" [value]="upisaneGodinePodaci.prezime" >
+    </div>
+  </div>
+</div>
+  <div *ngIf="upisaneGodinePodaci">
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Ak godina</th>
+    <th>Godina</th>
+    <th>Obnova</th>
+    <th>Zimski semestar<br>
+      <input value="Upis" disabled> |
+      <input value="Ovjera" disabled>
+    </th>
+    <th>Evidentirao</th>
+    <th>Akcija</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let item of upisaneGodinePodaci.upisaneGodine">
+    <td>{{item.id}}</td>
+    <td>{{item.akGodina.opis}}</td>
+    <td>{{item.godinaStudija}}</td>
+    <td>{{item.obnova}}</td>
+    <td>
+      <input [value]="item.datumUpisa | date:'dd.MM.yyyy.'"> |
+      <input [value]="item.datumOvjere | date:'dd.MM.yyyy.'">
+    </td>
+    <td>{{item.evidentiraoKorisnik.korisnickoIme}}</td>
+    <td>
+      <a class="btn btn-link" (click)="otvoriOvjeru(item.id)">Ovjeri zimski semestar </a> <br>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+  <button class="form-label" (click)="otvori()">Upis u zimski semestar</button>
+</div>
+
+<div *ngIf="noviSemestar">
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Novi semestar za {{imePrezime}} </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="zatvori()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Datum</label>
+          <input class="form-control" type="date"  placeholder="Datum" [(ngModel)]="noviSemestar.datumUpisa">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Godina studija</label>
+          <input class="form-control" placeholder="Godina studija" [(ngModel)]="noviSemestar.godinaStudija"/>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Ak godina</label>
+          <select class="form-control" [(ngModel)]="noviSemestar.akademskaGodinaId">
+            <option *ngFor="let a of akademskeGodine" [value]="a.id">{{a.opis}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cijena školarine</label>
+          <input class="form-control"  placeholder="Cijena školarine" [(ngModel)]="noviSemestar.cijenaSkolarine"/>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input"  placeholder="Obnova godine" [(ngModel)]="noviSemestar.obnova"/>
+          <label class="form-check-label">Obnova godine</label>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="zatvori()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="snimi()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="ovjeriSemestar">
+  <div class="modal fade show" id="exampleModalLive1" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel1">Ovjera semestra za {{imePrezime}} </h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="zatvoriOvjeru()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Datum</label>
+            <input class="form-control" type="date"  placeholder="Datum" [(ngModel)]="ovjeriSemestar.datumOvjere">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Napomena</label>
+            <input type="text" class="form-control" placeholder="Napomena" [(ngModel)]="ovjeriSemestar.napomena"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="zatvoriOvjeru()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="ovjera()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
