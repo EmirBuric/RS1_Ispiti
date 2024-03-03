@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Burke\\Documents\\GitHub\\RS1-Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj": {}
+    "C:\\Users\\Burke\\Documents\\GitHub\\RS1_Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Burke\\Documents\\GitHub\\RS1-Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj": {
+    "C:\\Users\\Burke\\Documents\\GitHub\\RS1_Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Burke\\Documents\\GitHub\\RS1-Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj",
+        "projectUniqueName": "C:\\Users\\Burke\\Documents\\GitHub\\RS1_Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj",
         "projectName": "FIT_Api_Examples",
-        "projectPath": "C:\\Users\\Burke\\Documents\\GitHub\\RS1-Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj",
+        "projectPath": "C:\\Users\\Burke\\Documents\\GitHub\\RS1_Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\FIT_Api_Examples.csproj",
         "packagesPath": "C:\\Users\\Burke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Burke\\Documents\\GitHub\\RS1-Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\obj\\",
+        "outputPath": "C:\\Users\\Burke\\Documents\\GitHub\\RS1_Ispiti\\Ispit-23-01-2024\\Rjesenje\\webapi\\FIT_Api_Examples\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,0 +1,109 @@
+<p>studenti works!</p>
+
+<div>
+  <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
+  <input [(ngModel)]="ime_prezime" [disabled]="!filter_ime_prezime" (input)="pretraga($event)"><br>
+  <hr>
+
+  <input [(ngModel)] = "filter_opstina" type="checkbox"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
+  <select  [(ngModel)]="opstina" [disabled]="!filter_opstina" (click)="pretraga($event)" >
+    <option *ngFor="let o of opstine" [value]="o.opis">{{o.opis}}</option>
+  </select><br>
+  <hr>
+</div>
+<table class="table table-warning">
+  <tr>
+    <th>ID</th>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Broj indeksa</th>
+    <th>Drzava rođenja</th>
+    <th>Opstina rođenja</th>
+    <th>Datum dodavanja</th>
+    <th>Akcija</th>
+  </tr>
+  <tbody>
+  <tr *ngFor="let s of this.studentPodaci">
+    <td>{{s.id}}</td>
+    <td>{{s.ime}}</td>
+    <td>{{s.prezime}}</td>
+    <td>{{s.broj_indeksa}}</td>
+    <td>{{s.opstina_rodjenja!=null?s.opstina_rodjenja.drzava.naziv:""}}</td>
+    <td>{{s.opstina_rodjenja!=null?s.opstina_rodjenja.description:""}}</td>
+    <td>{{s.created_time | date:'dd.MM.yyyy'}}</td>
+    <td>
+      <button (click)="obrisiStudenta(s.id)">Obrisi</button>
+      <button (click)="edit(s.id,s.ime,s.prezime,s.opstina_rodjenja_id)">Uredi</button>
+      <button [routerLink]="['/student-maticnaknjiga',s.id]">Maticna knjiga</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div *ngIf="editStudent">
+  <div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel">Edit Student </h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="zatvori()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Ime</label>
+            <input class="form-control"  placeholder="Ime" [(ngModel)]="editStudent.ime">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prezime</label>
+            <input class="form-control" placeholder="Prezime" [(ngModel)]="editStudent.prezime"/>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Opstina</label>
+            <select class="form-control" [(ngModel)]="editStudent.opstinaId">
+              <option *ngFor="let o of opstine" [value]="o.id">{{o.opis}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="zatvori()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="spasiEdit()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="form-label" (click)="novi(0,ime_prezime,'',defaultOpstina)">Novi student</button>
+
+<div *ngIf="noviStudent">
+  <div class="modal fade show" id="exampleModalLive1" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel1">Novi Student </h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="zatvoriNovi()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Ime</label>
+            <input class="form-control"  placeholder="Ime" [(ngModel)]="noviStudent.ime">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prezime</label>
+            <input class="form-control" placeholder="Prezime" [(ngModel)]="noviStudent.prezime"/>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Opstina</label>
+            <select class="form-control" [(ngModel)]="noviStudent.opstinaId">
+              <option *ngFor="let o of opstine" [value]="o.id">{{o.opis}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="zatvoriNovi()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="spasiNovi()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
